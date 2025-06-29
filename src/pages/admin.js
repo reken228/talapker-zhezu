@@ -35,7 +35,7 @@ useEffect(() => {
   } else {
     setIsAuthorized(true);
   }
-}, []);
+}, [navigate]);
 if (!isAuthorized) return null;
 
   return (

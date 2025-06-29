@@ -1,11 +1,12 @@
 export async function sendToQwen(messages) {
   try {
     console.log("📤 Отправка сообщений:", messages);
-
+    
     const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
       method: "POST",
       headers: {
-        "Authorization": `Bearer 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`, // твой ключ
+        "Authorization": `Bearer ${process.env.REACT_APP_API_KEY}`,
+
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
@@ -27,7 +28,9 @@ export async function sendToQwen(messages) {
 
     return message || "Қате жауап: бос жауап.";
   } catch (err) {
-    console.error("❌ Ошибка соединения:", err);
-    return "Қате жауап: қосылу кезінде қате шықты.";
-  }
+  console.error("❌ Ошибка соединения:", err);
+  alert("Ошибка соединения: " + err.message);
+  return "Қате жауап: қосылу кезінде қате шықты.";
+}
+
 }
